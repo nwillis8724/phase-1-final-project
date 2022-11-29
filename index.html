@@ -13,6 +13,22 @@
     <p id="agenda"></p>
 </div>
 
+<!-- error message -->
+<div class="container-mt-5" id="agenda_error" hidden>
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-xs-12 col-sm-6"></div>
+            <div class="alert fade_error .fade"> <strong>Please select agenda first.</strong> </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-mt-5" id="mood_error" hidden>
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-xs-12 col-sm-6"></div>
+            <div class="alert fade_error .fade"> <strong>Please select a mood between 1 and 10.</strong> </div>
+        </div>
+    </div>
+</div>
 <!-- weather api -->
     <div id="weather">
         <a class="weatherwidget-io" href="https://forecast7.com/en/41d81n88d01/downers-grove/?unit=us" data-label_1="Downers Grove" data-label_2="Weather" data-theme="original" >Downers Grove Weather</a>
@@ -27,9 +43,9 @@
 
 <!-- vibe check -->
 
-            <details class="dropdown">
+            <details class="dropdown" id="dropdown">
                 <summary id="hitbox" role="button">
-                  <a class="button">What's on the agenda for today?</a>
+                  <a class="button" id="agenda_init">What's on the agenda for today?</a>
                 </summary>
                 <ul id="agenda_ul">
                   <li><a href="#">Chilling out today with nothing in the books</a></li>
@@ -67,7 +83,7 @@
 
 <!-- output section of the webpage -->
         <div id="output" hidden>
-
+            <h1>its time!</h1>
             <!-- meal plan -->
             <div id="meal">
 

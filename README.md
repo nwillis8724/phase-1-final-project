@@ -55,3 +55,7 @@ src = https://codepen.io/garetmckinley/pen/XvgzKQ
 Thank you Soufiane Khalfaoui HaSsani for the form style i used
 
 src = https://codepen.io/soufiane-khalfaoui-hassani/pen/LYpPWda
+
+Thank you BBBootstrap Team, @bbbootstrap62244, for the error alerts i used
+
+src = https://bbbootstrap.com/snippets/bootstrap-messages-alerts-58736812
