@@ -40,3 +40,18 @@ Any upcoming events
 
 Dark Mode
     for those of us who prefer it and those who don't
+
+
+# Credits
+
+Thank you Smashing Magazine for creating  header style I used
+
+src = https://codepen.io/smashing-magazine/pen/dyzPQor
+
+Thank you Garet McKinley for the drop down menu style I used
+
+src = https://codepen.io/garetmckinley/pen/XvgzKQ
+
+Thank you Soufiane Khalfaoui HaSsani for the form style i used
+
+src = https://codepen.io/soufiane-khalfaoui-hassani/pen/LYpPWda
