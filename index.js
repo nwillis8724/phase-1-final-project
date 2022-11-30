@@ -1,46 +1,8 @@
+//ask about the html command that does this
 window.addEventListener('DOMContentLoaded', (event) => {
     console.log('DOM fully loaded');
 })
-$(document).ready(function() {
-    // Create two variables with names of months and days of the week in the array
-    var monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ]; 
-    var dayNames= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
-    
-    // Create an object newDate()
-    var newDate = new Date();
-    // Retrieve the current date from the Date object
-    newDate.setDate(newDate.getDate());
-    // At the output of the day, date, month and year    
-    $('#Date').html(dayNames[newDate.getDay()] + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + ' ' + newDate.getFullYear());
-    
-    setInterval( function() {
-        // Create an object newDate () and extract the second of the current time
-        var seconds = new Date().getSeconds();
-        // Add a leading zero to the value of seconds
-        $("#sec").html(( seconds < 10 ? "0" : "" ) + seconds);
-        },1000);
-        
-    setInterval( function() {
-        // Create an object newDate () and extract the minutes of the current time
-        var minutes = new Date().getMinutes();
-        // Add a leading zero to the minutes
-        $("#min").html(( minutes < 10 ? "0" : "" ) + minutes);
-        },1000);
-        
-    setInterval( function() {
-        // Create an object newDate () and extract the clock from the current time
-        var hours = new Date().getHours();
-        // Add a leading zero to the value of hours
-        $("#hours").html(( hours < 10 ? "0" : "" ) + hours);
-        }, 1000);
-        
-    }); 
-//grab date and time
 
-//create random number
-function getRandomInt(min, max) {
-    return parseInt(Math.random() * (max - min) + min);
-}
 //different variables
 let agendaDefault = document.getElementById("agenda_init")
 let agendaErrorBanner = document.getElementById("agenda_error")
@@ -48,37 +10,52 @@ let moodErrorBanner = document.getElementById("mood_error")
 let inputDiv = document.getElementById("input")
 let agendaSelections = document.getElementById("agenda_ul").querySelectorAll("a")
 let moodNum = document.getElementById("mood_input").value
+let moodInput = document.getElementById("mood_input")
 let outputDiv = document.getElementById("output")
-//ask ignas about that one command in html that does this
+let dropdown = document.getElementById('dropdown')
+//create random number
+function getRandomInt(min, max) {
+    return parseInt(Math.random() * (max - min) + min);
+}
+
+// create an onclick event for each agenda option
+for (li of agendaSelections) {
+    li.addEventListener('click', agendaOptionSelected) 
+  }
 
 //captures innerHML of agenda selections, replaces default and dropbar dismissed
-const agendaOptionSelected = function (){
+function agendaOptionSelected(){
     let agendaDialogue = this.innerHTML
     agendaDefault.innerHTML = agendaDialogue
     document.getElementById("dropdown").removeAttribute("open")
 }
 
-// create an onclick event for each agenda option
-for (a of agendaSelections) {
-    a.addEventListener('click', agendaOptionSelected) 
-  }
 
-//if agenda selection hasnt been made, set alert card to select first. else grab new value and store
-const checkSelections = function (){
+//onclick submit hides the input after storing any value information from the mood meter
+document.getElementById("submit").addEventListener("click", initiateSelections)
+
+//check and store selections/inputs
+function initiateSelections(){
     let agendaStorage = document.getElementById("agenda")
     //see if agenda selection has been made
     if(agendaDefault.innerHTML === "What's on the agenda for today?"){
+        //activate agenda error banner
         agendaErrorBanner.removeAttribute("hidden")
-        //set timeout for banner
         if(agendaErrorBanner.hidden === false){
             setTimeout(() => {agendaErrorBanner.setAttribute("hidden", true)}, 5000);
         }
-    // check if the value is less than 1 or greater than 10     (figure out how to make ' ' invalid input)
+    // check if the value is less than 1 or greater than 10
     }else if(parseInt(document.getElementById("mood_input").value) < 1 || parseInt(document.getElementById("mood_input").value) > 10){
         // reset input value 
         document.getElementById("mood_input").value = " "
+        //activate mood error banner
         moodErrorBanner.removeAttribute("hidden")
-        //set timeout for banner
+        if(moodErrorBanner.hidden === false){
+            setTimeout(() => {moodErrorBanner.setAttribute("hidden", true)}, 5000);
+        }
+    //check if input is n/a
+    }else if(document.getElementById("mood_input").value === ''){
+        moodErrorBanner.removeAttribute("hidden")
         if(moodErrorBanner.hidden === false){
             setTimeout(() => {moodErrorBanner.setAttribute("hidden", true)}, 5000);
         }
@@ -97,16 +74,21 @@ const checkSelections = function (){
             }if(moodNumStored < 3){
                 document.getElementById("sad_music").removeAttribute("hidden")
             }
+    }
 }
+
+//make agenda open with hover
+agendaDefault.addEventListener("mouseover", openDropdown)
+
+function openDropdown(){
+    dropdown.open = true
 }
 
 
-//onclick submit hides the input after storing any value information from the mood meter
-document.getElementById("submit").addEventListener("click", checkSelections)
+//or input event listener for the input inside mood meter
 
 
-//Meal Prep API
-
+//fetch recipie API
 const options = {
 	method: 'GET',
 	headers: {
@@ -115,42 +97,45 @@ const options = {
 	}
 };
 
-
-//translate recipie API to cards
-const createRecipieCard = function (recipies){
-    //grab random recipie from array
-    let randomRecipie = recipies[getRandomInt(1, 20)]
-    console.log(randomRecipie)
-    //pull name and place in card
-    let recipieName = randomRecipie[1].name
-    document.getElementById("recipie_name").innerHTML = recipieName
-    //pull img
-    let recipieImg = randomRecipie[1].thumbnail_url
-    document.getElementById("recipie_image").src = recipieImg
-    //pull desc
-    let recipieDesc = randomRecipie[1].description
-    document.getElementById("recipie_description").innerHTML = recipieDesc
-    //pull link
-    let recipieLink = randomRecipie[1].original_video_url
-    document.getElementById("recipie_link").href = recipieLink 
-    //pull credits
-    let credits = randomRecipie[1].credits[0].name
-    document.getElementById("credits").innerHTML = credits
-}
-
-//fetch recipie API
 fetch('https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&tags=under_30_minutes', options)
 	.then(response => response.json())
-	.then(data => data)
-    //change data into array
-    .then(dataObj => Object.entries(dataObj))
-    //filter out everything but the recipies themselves
-    .then(dataArr => Object.entries(dataArr[1][1]))
-    // put a random recipie on a card
-    .then(recipies => createRecipieCard(recipies))
-	.catch(err => console.error(err));
+    .then(data => filterRecipies(data.results))
 
 
+function filterRecipies(recipie){
+    let describedRecipies = []
+    recipie.forEach(item => {
+        if(item.description !== ""){
+            describedRecipies.push(item)
+        }
+    })
+    createRecipieCard(describedRecipies)
+}
+    
+function createRecipieCard(recipies){
+    //grab random recipie from array
+        let randomRecipie = recipies[getRandomInt(1, 17)]
+        console.log(randomRecipie)
+    //pull name and place in card
+        let recipieName = randomRecipie.name
+        document.getElementById("recipie_name").innerHTML = recipieName
+    //pull img
+        let recipieImg = randomRecipie.thumbnail_url
+        document.getElementById("recipie_image").src = recipieImg
+    //pull desc
+        let recipieDesc = randomRecipie.description
+        document.getElementById("recipie_description").innerHTML = recipieDesc
+    //pull link
+        let recipieLink = randomRecipie.original_video_url
+        document.getElementById("recipie_link").href = recipieLink 
+    //pull credits
+        let credits = randomRecipie.credits[0].name
+        document.getElementById("credits").innerHTML = credits
+    }
+    
+
+//shorten thens and incorperate a .filter
+//foreach on instructions
 //clock date and time
 
 

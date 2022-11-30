@@ -44,6 +44,10 @@ Dark Mode
 
 # Credits
 
+Thank you to weatherwidget.io for the... weather widget
+
+src = https://weatherwidget.io/
+
 Thank you Smashing Magazine for creating  header style I used
 
 src = https://codepen.io/smashing-magazine/pen/dyzPQor

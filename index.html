@@ -14,39 +14,19 @@
 </div>
 
 <!-- error message -->
-<div class="container-mt-5" id="agenda_error" hidden>
-    <div class="row">
-        <div class="col-lg-6 col-md-6 col-xs-12 col-sm-6"></div>
+<div class="error_banner" id="agenda_error" hidden>
             <div class="alert fade_error .fade"> <strong>Please select agenda first.</strong> </div>
-        </div>
     </div>
-</div>
 
-<div class="container-mt-5" id="mood_error" hidden>
-    <div class="row">
-        <div class="col-lg-6 col-md-6 col-xs-12 col-sm-6"></div>
+<div class="error_banner" id="mood_error" hidden>
             <div class="alert fade_error .fade"> <strong>Please select a mood between 1 and 10.</strong> </div>
         </div>
-    </div>
-</div>
+
 <!-- weather api -->
     <div id="weather">
         <a class="weatherwidget-io" href="https://forecast7.com/en/41d81n88d01/downers-grove/?unit=us" data-label_1="Downers Grove" data-label_2="Weather" data-theme="original" >Downers Grove Weather</a>
         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');</script>
     </div>
-<!-- date and time  -->
-<div class="clock">
-    <div id="Date"></div>
-    <ul>
-        <li id="hours"></li>
-        <li id="point">:</li>
-        <li id="min"></li>
-        <li id="point">:</li>
-        <li id="sec"></li>
-    </ul>
-</div>
-
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 
 <!-- input section of the webpage -->
         <div id="input">
@@ -57,7 +37,7 @@
 <!-- vibe check -->
 
             <details class="dropdown" id="dropdown">
-                <summary id="hitbox" role="button">
+                <summary id="hitbox">
                   <a class="button" id="agenda_init">What's on the agenda for today?</a>
                 </summary>
                 <ul id="agenda_ul">
@@ -70,7 +50,7 @@
 
 <!-- mood meter -->
 
-            <div class="login-box">
+            <div class="mood_meter_box">
                 <h1 id="mood_meter_header">The Mood Meter</h1>
                 <form>
                     <p>Good Morning! We would love to help organize your day, just input your mood on a scale of 1 to 10.</p> 
@@ -79,15 +59,11 @@
                   <div class="user-box">
                   </div>
                   <div class="user-box">
-                    <input id="mood_input">
+                    <input id="mood_input"> 
                     <label>
                     </label>
                   </div>
                   <a href="#" id="submit">
-                    <!-- <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span> -->
                     Submit
                   </a>
                 </form>
@@ -99,28 +75,14 @@
         <div id="output" hidden>
           
             <!-- meal plan -->
-            <div id="meal">
-                <div class="container">
-                    <div class="post">
-                        <div class="header_post">
-                            <img id="recipie_image" src="https://images.pexels.com/photos/2529973/pexels-photo-2529973.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="">
-                        </div>
-                        <div id="recipie_backdrop"></div>
-                        <div class="body_post">
-                            <div class="post_content">
-                
-                                <h1 id = "recipie_name">Recipie Name</h1>
-                                <p id="recipie_description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci animi assumenda cumque deserunt
-                                    dolorum ex exercitationem.</p>
-                                <a href="" id="recipie_link">Link here</a>
-                                <div class="container_infos">
-                                    <div class="postedBy" id="credits">
-                                        John Doe
-                                    </div>             
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+            <div>
+                <div id="recipie_backdrop">
+                    <div id="encapsul"><img src ="" id="recipie_image"></div>
+                    <div id="recipie_info">
+                        <h1 id="recipie_name"></h1>
+                            <p id="recipie_description">Check the link below for the recipie!</p>
+                                <a href="" id="recipie_link">Link Here</a>
+                                    <p id="credits"></p>    
                     </div>
                 </div>
             </div>
