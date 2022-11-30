@@ -12,28 +12,70 @@ body {
 }
 
 /* date and time  */
-#datetime {
-    position: absolute;
-    top: 85px;
-    background-color: rgb(31, 86, 124);
-    padding: 5px;
-    box-shadow: 0 15px 25px rgb(0 0 0 / 60%);
+.clock {
+    position: absolute; top: 10%; left: 2%;
+    width:300px;
+    height: 50px;
+    color:#edf5e1;
+    background:rgb(31, 86, 124);
     border-radius: 5px;
-    font-family: Andale Mono, monospace;
-    margin-left: 3%;
+    box-shadow: rgb(31, 86, 124) 0px 5px 15px;
+  }
+  
+  #Date {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:20px;
+    text-align:center;
+    text-shadow:0 0 7px #8ee4af;
+  }
+  
+  ul {
+    width:300px;
+    margin:0 auto;
+    padding:0px;
+    list-style:none;
+    text-align:center;
+  }
+  
+  ul li {
+    display:inline;
+    font-size:20px;
+    text-align:center;
+    font-family:Arial, Helvetica, sans-serif;
+    text-shadow:0 0 7px #8ee4af;
+  }
+  
+  #point {
+    position:relative;
+    -moz-animation:mymove 1s ease infinite;
+    -webkit-animation:mymove 1s ease infinite;
+    padding-left:10px; padding-right:10px;
+  }
+  
+  @-webkit-keyframes mymove 
+  {
+  0% {opacity:1.0; text-shadow:0 0 20px #8ee4af;}
+  50% {opacity:0; text-shadow:none; }
+  100% {opacity:1.0; text-shadow:0 0 20px #8ee4af; }    
+  }
+  
+  @-moz-keyframes mymove 
+  {
+  0% {opacity:1.0; text-shadow:0 0 20px #8ee4af;}
+  50% {opacity:0; text-shadow:none; }
+  100% {opacity:1.0; text-shadow:0 0 20px #8ee4af; }    
+  }
 
-}
 /* weather */
 #weather {
     border-style: solid;
     border-color: rgb(31, 86, 124);
     border-radius: 10px;
-    box-shadow: 0 15px 25px rgb(0 0 0 / 60%);
+    box-shadow: rgb(31, 86, 124) 0px 5px 15px;
 }
 /* drop down card  */
 .vibe {
     border-style: none;
-    border-color: cornflowerblue;
     border-radius: 5px;
     text-align: center;
     background-color: rgb(31, 86, 124);
@@ -49,7 +91,6 @@ body {
 /* mood meter card */
 #mood_meter {
     border-style: none;
-    border-color: cornflowerblue;
     border-radius: 5px;
     text-align: center;
     background-color: rgb(31, 86, 124);
@@ -120,7 +161,7 @@ body {
     -webkit-text-fill-color: transparent;
     color: transparent;
     background-image: linear-gradient(305deg, #8ee4af, #379683, #8ee4af);
-    margin-top: 50px;
+    position: absolute; top: 15%; left: 32%;
   }
   h1 > *, h1::after {
     grid-area: text;
@@ -624,5 +665,3 @@ body {
     bottom: 0px;
   }
 }
-
-/* FIND OUT WHY CARD AFFECTS HOME PAGE AND TRANSFORM IT TO RECIPIE CARD */
