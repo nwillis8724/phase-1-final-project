@@ -59,3 +59,11 @@ src = https://codepen.io/soufiane-khalfaoui-hassani/pen/LYpPWda
 Thank you BBBootstrap Team, @bbbootstrap62244, for the error alerts i used
 
 src = https://bbbootstrap.com/snippets/bootstrap-messages-alerts-58736812
+
+Thank you to Tasty for their recipie API!
+
+src = https://rapidapi.com/apidojo/api/tasty/
+
+Thank you to Kaio Almeida for the card and hover display
+
+src = https://codepen.io/KaioRocha/pen/orpKxq

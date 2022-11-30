@@ -34,6 +34,8 @@
         <a class="weatherwidget-io" href="https://forecast7.com/en/41d81n88d01/downers-grove/?unit=us" data-label_1="Downers Grove" data-label_2="Weather" data-theme="original" >Downers Grove Weather</a>
         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');</script>
     </div>
+<!-- date and time  -->
+    <p><span id="datetime"></span></p>
 
 <!-- input section of the webpage -->
         <div id="input">
@@ -48,6 +50,7 @@
                   <a class="button" id="agenda_init">What's on the agenda for today?</a>
                 </summary>
                 <ul id="agenda_ul">
+                  <li><a href="#">What's on the agenda for today?</a></li>
                   <li><a href="#">Chilling out today with nothing in the books</a></li>
                   <li><a href="#">Do some errands, and chill</a></li>
                   <li><a href="#">We have a lot of things to do today</a></li>
@@ -83,12 +86,33 @@
 
 <!-- output section of the webpage -->
         <div id="output" hidden>
-            <h1>its time!</h1>
+          
             <!-- meal plan -->
             <div id="meal">
-
+                <div class="container">
+                    <div class="post">
+                        <div class="header_post">
+                            <img id="recipie_image" src="https://images.pexels.com/photos/2529973/pexels-photo-2529973.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="">
+                        </div>
+                        <div id="recipie_backdrop"></div>
+                        <div class="body_post">
+                            <div class="post_content">
+                
+                                <h1 id = "recipie_name">Recipie Name</h1>
+                                <p id="recipie_description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci animi assumenda cumque deserunt
+                                    dolorum ex exercitationem.</p>
+                                <a href="" id="recipie_link">Link here</a>
+                                <div class="container_infos">
+                                    <div class="postedBy" id="credits">
+                                        John Doe
+                                    </div>             
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
             <!-- clothing options -->
             <div id="clothes">
 
@@ -102,7 +126,9 @@
             <!-- music player -->
 
             <div id="music">
-
+                <iframe class="playlist" id="sad_music" hidden style="border-radius:12px" src="https://open.spotify.com/embed/playlist/3c0Nv5CY6TIaRszlTZbUFk?utm_source=generator&theme=0" allowfullscreen="" width="25%" height="200" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" id="playlist"></iframe>
+                <iframe class="playlist" id="mood_booster" hidden style="border-radius:12px" src="https://open.spotify.com/embed/playlist/60zhIyhD9ZVBSsHoNFN6pL?utm_source=generator&theme=0" width="25%" height="200" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                <iframe class="playlist" id="good_mood" hidden style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5TDtuKDbOhrfW7C58XnriZ?utm_source=generator&theme=0" width="25%" height="200" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
             </div>
 
         </div>
