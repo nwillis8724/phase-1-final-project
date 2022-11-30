@@ -499,13 +499,14 @@ body {
 }
 
 .container .post {
-  position: absolute; top: 30%; left: 80%;
+  position: absolute; top: 16%; left: 80%;
   width: 350px;
-  height: 600px;
+  height: 800px;
   display: flex;
   overflow: hidden;
   flex-direction: column;
   border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 .container .post:hover .header_post {
   margin-top: -20px;
