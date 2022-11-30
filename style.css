@@ -171,11 +171,6 @@ body {
   }
   
   
-  /* Close the dropdown with outside clicks */
-  .dropdown > summary::before {
-    display: none;
-  }
-  
   .dropdown[open] > summary::before {
       content: ' ';
       display: block;

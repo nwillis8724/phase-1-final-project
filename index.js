@@ -23,6 +23,19 @@ for (li of agendaSelections) {
     li.addEventListener('click', agendaOptionSelected) 
   }
 
+//make agenda open with hover
+agendaDefault.addEventListener("mouseover", openDropdown)
+
+function openDropdown(){
+    dropdown.open = true
+}
+//close agenda on click
+window.addEventListener('click', closeDropdown)
+
+function closeDropdown(){
+    dropdown.open = false
+}
+
 //captures innerHML of agenda selections, replaces default and dropbar dismissed
 function agendaOptionSelected(){
     let agendaDialogue = this.innerHTML
@@ -33,7 +46,14 @@ function agendaOptionSelected(){
 
 //onclick submit hides the input after storing any value information from the mood meter
 document.getElementById("submit").addEventListener("click", initiateSelections)
-
+//do the same thing for enter keypress
+window.addEventListener("keypress", enterKeyPress)
+//if the enter key is clicked initiate selections
+function enterKeyPress(e){
+    if(e.key === "Enter"){
+        initiateSelections()
+    }
+}
 //check and store selections/inputs
 function initiateSelections(){
     let agendaStorage = document.getElementById("agenda")
@@ -76,14 +96,6 @@ function initiateSelections(){
             }
     }
 }
-
-//make agenda open with hover
-agendaDefault.addEventListener("mouseover", openDropdown)
-
-function openDropdown(){
-    dropdown.open = true
-}
-
 
 //or input event listener for the input inside mood meter
 
@@ -136,7 +148,7 @@ function createRecipieCard(recipies){
 
 //shorten thens and incorperate a .filter
 //foreach on instructions
-//clock date and time
+
 
 
   

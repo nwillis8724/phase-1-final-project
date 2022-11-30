@@ -13,6 +13,7 @@ Everything after the three manual imputs will be influenced by whatever has been
 
 Weather API
     We will be accessing a Weather API to dictate a lot of the options on the page, for example if its raining it will advise an umbrella for the outfit plan
+    
 Mood meter
     Utilizing a drop down bar between 1-10 will help the system figure out what general paths to take. for now it will be fairly straight forward - but perhaps we can implement a push system that gives us less motivated individuals a bit extra motivation on those 1 days.
 
@@ -37,9 +38,6 @@ Songs
 
 Any upcoming events 
     Manually input any sort of event you have upcoming and the page will remind you a day ahead and the day of
-
-Dark Mode
-    for those of us who prefer it and those who don't
 
 
 # Credits
