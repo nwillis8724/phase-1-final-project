@@ -31,7 +31,7 @@
     </div>
 
 <!-- input -->
-        <div id="input" hidden>
+        <div id="input">
 
     <!-- good morning header -->
             <h1 data-text="Good Morning" id="good_morning"><span>Good Morning</span></h1>
@@ -74,7 +74,7 @@
         </div>
 
 <!-- output section of the webpage -->
-        <div id="output">
+        <div id="output" hidden>
           
     <!-- meal plan -->
             <div>
@@ -111,30 +111,30 @@
             <p id="amount"></p>
         </div>
 
+          <!-- a planner -->
+          <div id="planner">
+            <div id="upcoming_event">
+                 <h1 id="planner_title">Today in Summary!</h1>
+                 <h2 id="event_title">Event title</h2>
+                 <p id="event_description">Event description</p>
+                 <p id="reminders">Event reminders</p>
+                 <p id="alternative">Alternative ideas</p>
+            </div>
+ 
+            <form id="upcoming_event_input">
+                 <input type="text" id="date_input" class="input">
+                 <input type="text" id="event_input" class="input">
+                 <input type="text" id="location_input" class="input">
+                 <input type="text" id="atendee_input" class="input">
+                 <input type="text" id="reminder_input" class="input">
+                 <input type="text" id="alternative_input" class="input">
+                 <input type="button" id="planner_submit_all">
+            </form>
+ 
+         </div>
+     
+
         </div>
-
-    <!-- a planner -->
-        <div id="planner">
-           <div id="upcoming_event">
-                <h1 id="planner_title">Today in Summary!</h1>
-                <h2 id="event_title">Event title</h2>
-                <p id="event_description">Event description</p>
-                <p id="reminders">Event reminders</p>
-                <p id="alternative">Alternative ideas</p>
-           </div>
-
-           <form id="upcoming_event_input">
-                <input type="text" id="date_input" class="input">
-                <input type="text" id="event_input" class="input">
-                <input type="text" id="location_input" class="input">
-                <input type="text" id="atendee_input" class="input">
-                <input type="text" id="reminder_input" class="input">
-                <input type="text" id="alternative_input" class="input">
-                <input type="button" id="planner_submit_all">
-           </form>
-
-        </div>
-    
 
 
     </body>
