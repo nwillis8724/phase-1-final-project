@@ -166,3 +166,8 @@ function displayStockTransactions(transArr){
     document.getElementById("amount").innerText = `Amount: ${displayedTransaction.amount}`
 }
 
+
+//planner
+fetch("http://localhost:3000/upcomingEvents")
+    .then(response => response.json())
+    .then(data => console.log(data))

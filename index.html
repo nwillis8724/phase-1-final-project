@@ -31,7 +31,7 @@
     </div>
 
 <!-- input -->
-        <div id="input">
+        <div id="input" hidden>
 
     <!-- good morning header -->
             <h1 data-text="Good Morning" id="good_morning"><span>Good Morning</span></h1>
@@ -74,7 +74,7 @@
         </div>
 
 <!-- output section of the webpage -->
-        <div id="output" hidden>
+        <div id="output">
           
     <!-- meal plan -->
             <div>
@@ -88,22 +88,18 @@
                     </div>
                 </div>
             </div>
+
     <!-- clothing options -->
             <div id="clothes">
-
-            </div>
-
-    <!-- Social Expectations -->
-            <div id="social">
 
             </div>
 
     <!-- music player -->
 
             <div id="music">
-                <iframe class="playlist" id="sad_music" hidden style="border-radius:12px" src="https://open.spotify.com/embed/playlist/3c0Nv5CY6TIaRszlTZbUFk?utm_source=generator&theme=0" allowfullscreen="" width="25%" height="200" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" id="playlist"></iframe>
-                <iframe class="playlist" id="mood_booster" hidden style="border-radius:12px" src="https://open.spotify.com/embed/playlist/60zhIyhD9ZVBSsHoNFN6pL?utm_source=generator&theme=0" width="25%" height="200" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-                <iframe class="playlist" id="good_mood" hidden style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5TDtuKDbOhrfW7C58XnriZ?utm_source=generator&theme=0" width="25%" height="200" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                <iframe class="playlist" id="sad_music" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DX889U0CL85jj?utm_source=generator" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                <iframe class="playlist" id="mood_booster" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1F73WsrRMaBzEKtVLuZtgg?utm_source=generator" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                <iframe class="playlist" id="good_mood" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M?utm_source=generator&theme=0" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
             </div>
 
     <!-- house of reps purchase for the day -->
@@ -117,8 +113,25 @@
 
         </div>
 
-    <!-- event planner that will show at all times -->
-        <div id="events">
+    <!-- a planner -->
+        <div id="planner">
+           <div id="upcoming_event">
+                <h1 id="planner_title">Today in Summary!</h1>
+                <h2 id="event_title">Event title</h2>
+                <p id="event_description">Event description</p>
+                <p id="reminders">Event reminders</p>
+                <p id="alternative">Alternative ideas</p>
+           </div>
+
+           <form id="upcoming_event_input">
+                <input type="text" id="date_input" class="input">
+                <input type="text" id="event_input" class="input">
+                <input type="text" id="location_input" class="input">
+                <input type="text" id="atendee_input" class="input">
+                <input type="text" id="reminder_input" class="input">
+                <input type="text" id="alternative_input" class="input">
+                <input type="button" id="planner_submit_all">
+           </form>
 
         </div>
     

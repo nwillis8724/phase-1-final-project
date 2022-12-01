@@ -324,6 +324,8 @@ html {
 
 /* playlist  */
 .playlist {
+    width: 500px;
+    height: 200px;
     box-shadow: 0 15px 25px rgb(0 0 0 / 60%);
     position: absolute; bottom: 3%; left: 1%;
 }
@@ -422,4 +424,41 @@ html {
     font-size: 10px;
     position: relative;left: 55%;top: -44%;
     padding-left: 10px;
+}
+
+#planner{
+    background-color: #edf5e1;
+    position: absolute; left: 36%; top: 17%;
+    width: 600px;
+    height: 700px;
+    border-radius: 10px;
+    box-shadow: rgb(31, 86, 124) 0px 5px 15px;
+    text-align: center;
+}
+
+#planner_title{
+    color: #379683;
+}
+
+#upcoming_event{
+    color: rgb(31, 86, 124);
+}
+
+#upcoming_event_input{
+    padding: 10px;
+    border-top: solid;
+    border-color: rgb(31, 86, 124);
+    position: absolute; top: 70%;
+    width: 580px;
+    height: 175px;
+}
+
+#upcoming_event_input #planner_submit_all{
+    width: 100px;
+    position: absolute; left: 40%; top: 90%;
+}
+
+.input{
+    margin: 5px;
+    margin-top: 25px;
 }
