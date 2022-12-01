@@ -13,6 +13,8 @@ let moodNum = document.getElementById("mood_input").value
 let moodInput = document.getElementById("mood_input")
 let outputDiv = document.getElementById("output")
 let dropdown = document.getElementById('dropdown')
+let date = new Date()
+let currentDate = (date.getMonth() + '/' + date.getDate() + '/' + date.getFullYear())
 //create random number
 function getRandomInt(min, max) {
     return parseInt(Math.random() * (max - min) + min);
@@ -47,7 +49,7 @@ function agendaOptionSelected(){
 //onclick submit hides the input after storing any value information from the mood meter
 document.getElementById("submit").addEventListener("click", initiateSelections)
 //do the same thing for enter keypress
-window.addEventListener("keypress", enterKeyPress)
+window.addEventListener("keydown", enterKeyPress)
 //if the enter key is clicked initiate selections
 function enterKeyPress(e){
     if(e.key === "Enter"){
@@ -57,7 +59,7 @@ function enterKeyPress(e){
 //check and store selections/inputs
 function initiateSelections(){
     let agendaStorage = document.getElementById("agenda")
-    //see if agenda selection has been made
+    //check if agenda selection has been made
     if(agendaDefault.innerHTML === "What's on the agenda for today?"){
         //activate agenda error banner
         agendaErrorBanner.removeAttribute("hidden")
@@ -99,35 +101,28 @@ function initiateSelections(){
 
 //or input event listener for the input inside mood meter
 
+//!!!too many responses!!!
 
-//fetch recipie API
-const options = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Key': '25f28ab8camsha873c056abacba3p11c668jsn1474a4876764',
-		'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
-	}
-};
-
-fetch('https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&tags=under_30_minutes', options)
-	.then(response => response.json())
-    .then(data => filterRecipies(data.results))
+// fetch('https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&tags=under_30_minutes', {
+// 	method: 'GET',
+// 	headers: {
+// 		'X-RapidAPI-Key': '25f28ab8camsha873c056abacba3p11c668jsn1474a4876764',
+// 		'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
+// 	}
+// })
+// 	.then(response => response.json())
+//     .then(data => filterRecipies(data.results))
 
 
 function filterRecipies(recipie){
-    let describedRecipies = []
-    recipie.forEach(item => {
-        if(item.description !== ""){
-            describedRecipies.push(item)
-        }
-    })
+    let describedRecipies = recipie.filter(item => item.description !== "")
     createRecipieCard(describedRecipies)
-}
+
+    }
     
 function createRecipieCard(recipies){
     //grab random recipie from array
         let randomRecipie = recipies[getRandomInt(1, 17)]
-        console.log(randomRecipie)
     //pull name and place in card
         let recipieName = randomRecipie.name
         document.getElementById("recipie_name").innerHTML = recipieName
@@ -149,6 +144,25 @@ function createRecipieCard(recipies){
 //shorten thens and incorperate a .filter
 //foreach on instructions
 
+//daily stock advice
+fetch("https://house-stock-watcher-data.s3-us-west-2.amazonaws.com/data/all_transactions.json")
+    .then(response => response.json())
+    .then(data => displayStockTransactions(data))
 
+function displayStockTransactions(transArr){
+    //get transactions from the day of using todays date and a filter method
+    let todaysTransactions = transArr.filter(transaction => transaction.disclosure_date === currentDate)
+    let displayedTransaction = todaysTransactions[0]
+    let typeOfTransaction
+    if(displayedTransaction.type === "sale_full"){
+        typeOfTransaction = "Sell"
+    }else{
+        typeOfTransaction = "Buy"
+    }
+    console.log(displayedTransaction)
+    document.getElementById("rep_name").innerText = `Representative ${displayedTransaction.representative}`
+    document.getElementById("transaction_type").innerText = `Transaction Type: ${typeOfTransaction}`
+    document.getElementById("ticker").innerText = `Ticker: ${displayedTransaction.ticker}`
+    document.getElementById("amount").innerText = `Amount: ${displayedTransaction.amount}`
+}
 
-  

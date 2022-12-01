@@ -7,13 +7,13 @@
     </head>
     <body>
 
-<!-- stored information -->
+    <!-- stored information -->
 <div id="stored_info" hidden>
     <p id="mood_num"></p>
     <p id="agenda"></p>
 </div>
 
-<!-- error message -->
+    <!-- error message -->
 <div class="error_banner" id="agenda_error" hidden>
             <div class="alert fade_error .fade"> <strong>Please select agenda first.</strong> </div>
     </div>
@@ -22,19 +22,21 @@
             <div class="alert fade_error .fade"> <strong>Please select a mood between 1 and 10.</strong> </div>
         </div>
 
-<!-- weather api -->
+    <!-- weather widget -->
     <div id="weather">
-        <a class="weatherwidget-io" href="https://forecast7.com/en/41d81n88d01/downers-grove/?unit=us" data-label_1="Downers Grove" data-label_2="Weather" data-theme="original" >Downers Grove Weather</a>
-        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');</script>
+        <a class="weatherwidget-io" href="https://forecast7.com/en/41d81n88d01/downers-grove/?unit=us" data-label_1="Downers Grove" data-label_2="Weather" data-font="Roboto" data-icons="Climacons Animated" data-theme="original" data-textcolor="#edf5e1" >Downers Grove Weather</a>
+            <script>
+                !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+            </script>
     </div>
 
-<!-- input section of the webpage -->
+<!-- input -->
         <div id="input">
 
-<!-- header -->
+    <!-- good morning header -->
             <h1 data-text="Good Morning" id="good_morning"><span>Good Morning</span></h1>
 
-<!-- vibe check -->
+    <!-- vibe check -->
 
             <details class="dropdown" id="dropdown">
                 <summary id="hitbox">
@@ -74,7 +76,7 @@
 <!-- output section of the webpage -->
         <div id="output" hidden>
           
-            <!-- meal plan -->
+    <!-- meal plan -->
             <div>
                 <div id="recipie_backdrop">
                     <div id="encapsul"><img src ="" id="recipie_image"></div>
@@ -86,17 +88,17 @@
                     </div>
                 </div>
             </div>
-            <!-- clothing options -->
+    <!-- clothing options -->
             <div id="clothes">
 
             </div>
 
-            <!-- Social Expectations -->
+    <!-- Social Expectations -->
             <div id="social">
 
             </div>
 
-            <!-- music player -->
+    <!-- music player -->
 
             <div id="music">
                 <iframe class="playlist" id="sad_music" hidden style="border-radius:12px" src="https://open.spotify.com/embed/playlist/3c0Nv5CY6TIaRszlTZbUFk?utm_source=generator&theme=0" allowfullscreen="" width="25%" height="200" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" id="playlist"></iframe>
@@ -104,13 +106,22 @@
                 <iframe class="playlist" id="good_mood" hidden style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5TDtuKDbOhrfW7C58XnriZ?utm_source=generator&theme=0" width="25%" height="200" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
             </div>
 
+    <!-- house of reps purchase for the day -->
+        <div id="stocks_card">
+            <h1 id="title">Today in House stocks!</h1>
+            <h2 id="rep_name"></h2>
+            <p id="transaction_type"></p>
+            <p id="ticker"></p>
+            <p id="amount"></p>
         </div>
 
-        <!-- event planner that will show at all times -->
+        </div>
+
+    <!-- event planner that will show at all times -->
         <div id="events">
 
-
-
         </div>
+    
+
 
     </body>
