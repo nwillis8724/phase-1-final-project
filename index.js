@@ -6,9 +6,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
 //different variables
     let date = new Date()
     let currentDate = (date.getMonth() + '/' + date.getDate() + '/' + date.getFullYear())
-    let tomorrow = new Date()
-    tomorrow.setDate(tomorrow.getDate()+1)
-    let tomorrowDate = (tomorrow.getMonth() + '/' + tomorrow.getDate() + '/' + tomorrow.getFullYear())
+    // let tomorrow = new Date()
+    // tomorrow.setDate(tomorrow.getDate()+1)
+    // let tomorrowDate = (tomorrow.getMonth() + '/' + tomorrow.getDate() + '/' + tomorrow.getFullYear())
     let agendaDefault = document.getElementById("agenda_init")
     let agendaErrorBanner = document.getElementById("agenda_error")
     let moodErrorBanner = document.getElementById("mood_error")
@@ -19,6 +19,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
     let outputDiv = document.getElementById("output")
     let dropdown = document.getElementById('dropdown')
     let eventInputs = document.getElementById("upcoming_event_input").querySelectorAll("input")
+    let dateInput = document.getElementById("date_input")
+    let eventInput = document.getElementById("event_input")
+    let locationInput = document.getElementById("location_input")
+    let atendeeInput = document.getElementById("atendee_input")
+    let reminderInput = document.getElementById("reminder_input")
+    let alternativeInput = document.getElementById("alternative_input")
     let submitButton = document.getElementById("planner_submit_all")
 
 //create random number
@@ -109,23 +115,23 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 //Recipe API
 
-// fetch("https://api.edamam.com/api/recipes/v2?type=public&beta=false&app_id=11fd9927&app_key=82ce8e31088f48974a06cda967e986ce&diet=balanced&imageSize=REGULAR&random=true", {
-//     method: "GET",   
-//     headers: {
-//             "cache-control": "private",
-//             "connection": "keep-alive",
-//             "content-length": "193",
-//             "content-type": "application/json",
-//             "date": "Sat, 03 Dec 2022 18:29:28 GMT",
-//             "expires": "Thu, 01 Jan 1970 00:00:00 GMT",
-//             "server": "openresty",
-//             "strict-transport-security": "max-age=15552001",
-//             "x-envoy-upstream-service-time": "190",
-//             "x-served-by": "ip-10-0-1-87.ec2.internal/10.0.1.87"
-//     }
-// })
-    // .then(response => response.json())
-    // .then(recipies => filterRecipies(recipies))
+fetch("https://api.edamam.com/api/recipes/v2?type=public&beta=false&app_id=11fd9927&app_key=82ce8e31088f48974a06cda967e986ce&diet=balanced&imageSize=REGULAR&random=true", {
+    method: "GET",   
+    headers: {
+            "cache-control": "private",
+            "connection": "keep-alive",
+            "content-length": "193",
+            "content-type": "application/json",
+            "date": "Sat, 03 Dec 2022 18:29:28 GMT",
+            "expires": "Thu, 01 Jan 1970 00:00:00 GMT",
+            "server": "openresty",
+            "strict-transport-security": "max-age=15552001",
+            "x-envoy-upstream-service-time": "190",
+            "x-served-by": "ip-10-0-1-87.ec2.internal/10.0.1.87"
+    }
+})
+    .then(response => response.json())
+    .then(recipies => filterRecipies(recipies))
 
 //filter recipe to one random recipe object
     function filterRecipies(recipies){
@@ -183,30 +189,25 @@ window.addEventListener('DOMContentLoaded', (event) => {
     }
 
 
-//planner
+//planner data fetch
+    function fetchData(){
     fetch("http://localhost:3000/upcomingEvents")
         .then(response => response.json())
         .then(data => plannerEventFill(data))
-
-//eventObj Default
-    let eventObj = {  
-        "date" : "11/30/2022",
-        "event": "whats the event",
-        "location": "where is it at",
-        "attendees": "who else will be attending",
-        "reminders": "what should i bring",
-        "alternative": "do we have an alternative option",
-        }
+    }
+    fetchData()
 
 // fill planner event card
     function plannerEventFill(scheduleJson){
         scheduleJson.forEach(event => {
             if(event.id === scheduleJson.length){
+                console.log(event)
                 document.getElementById("event_title").innerText = event.event
-                document.getElementById("event_location").innerText = event.location
-                document.getElementById("event_atendees").innerText = event.attendees
-                document.getElementById("reminders").innerText = event.reminders
-                document.getElementById("alternative").innerText = event.alternative
+                document.getElementById("event_location").innerText = document.getElementById("event_location").innerText + " " + event.location
+                document.getElementById("event_atendees").innerText = document.getElementById("event_atendees").innerText + " " + event.attendees
+                document.getElementById("reminders").innerText = document.getElementById("reminders").innerText + " " + event.reminders
+                document.getElementById("alternative").innerText = document.getElementById("alternative").innerText + " " + event.alternative
+                document.getElementById("event_date").innerText = document.getElementById("event_date").innerText + " " + event.date
             }
         })
         }
@@ -224,13 +225,23 @@ window.addEventListener('DOMContentLoaded', (event) => {
 submitButton.addEventListener("click", createEventObj)
 
 function createEventObj(){
-    eventObj.date = document.getElementById("date_input").value
-    eventObj.date = document.getElementById("event_input").value
-    eventObj.date = document.getElementById("location_input").value
-    eventObj.date = document.getElementById("atendee_input").value
-    eventObj.date = document.getElementById("reminder_input").value
-    eventObj.date = document.getElementById("alternative_input").value
+    //assign eventObj variables
+    let eventObj = {  
+        "date" : dateInput.value,
+        "event": eventInput.value,
+        "location": locationInput.value,
+        "attendees": atendeeInput.value,
+        "reminders": reminderInput.value,
+        "alternative": alternativeInput.value,
+        }
+    //put eventObj into json for later calling
     updateSchedule(eventObj)
+    dateInput.value = "Date in M/D/YYYY"
+    eventInput.value = "What is the Event"
+    locationInput.value = "What is the Event"
+    atendeeInput.value = "Who else will be going?"
+    reminderInput.value = "Anything to remember?"
+    alternativeInput.value = "Alternative plan?"
 }
 
 function updateSchedule(eventObj){
