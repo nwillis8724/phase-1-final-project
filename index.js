@@ -19,6 +19,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     let outputDiv = document.getElementById("output")
     let dropdown = document.getElementById('dropdown')
     let eventInputs = document.getElementById("upcoming_event_input").querySelectorAll("input")
+    let submitButton = document.getElementById("planner_submit_all")
 
 //create random number
     function getRandomInt(min, max) {
@@ -123,8 +124,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
 //             "x-served-by": "ip-10-0-1-87.ec2.internal/10.0.1.87"
 //     }
 // })
-    .then(response => response.json())
-    .then(recipies => filterRecipies(recipies))
+    // .then(response => response.json())
+    // .then(recipies => filterRecipies(recipies))
 
 //filter recipe to one random recipe object
     function filterRecipies(recipies){
@@ -183,31 +184,62 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 
 //planner
-fetch("http://localhost:3000/upcomingEvents")
-    .then(response => response.json())
-    .then(data => plannerEventFill(data))
+    fetch("http://localhost:3000/upcomingEvents")
+        .then(response => response.json())
+        .then(data => plannerEventFill(data))
 
-// fill planner events
-
-function plannerEventFill(scheduleJson){
-    scheduleJson.forEach(event => {
-        if(event.id === scheduleJson.length){
-            document.getElementById("event_title").innerText = event.event
-            document.getElementById("event_location").innerText = event.location
-            document.getElementById("event_atendees").innerText = event.attendees
-            document.getElementById("reminders").innerText = event.reminders
-            document.getElementById("alternative").innerText = event.alternative
+//eventObj Default
+    let eventObj = {  
+        "date" : "11/30/2022",
+        "event": "whats the event",
+        "location": "where is it at",
+        "attendees": "who else will be attending",
+        "reminders": "what should i bring",
+        "alternative": "do we have an alternative option",
         }
-    })
-    }
 
+// fill planner event card
+    function plannerEventFill(scheduleJson){
+        scheduleJson.forEach(event => {
+            if(event.id === scheduleJson.length){
+                document.getElementById("event_title").innerText = event.event
+                document.getElementById("event_location").innerText = event.location
+                document.getElementById("event_atendees").innerText = event.attendees
+                document.getElementById("reminders").innerText = event.reminders
+                document.getElementById("alternative").innerText = event.alternative
+            }
+        })
+        }
 
 
 //event listener for every input on planner card. deletes default input
-for (input of eventInputs) {
-    input.addEventListener('click', clearDefault) 
+    for (input of eventInputs) {
+        input.addEventListener('click', clearDefault) 
+    }
+    function clearDefault(){
+    return this.value = ""
+    }
+
+//event listener for submit button
+submitButton.addEventListener("click", createEventObj)
+
+function createEventObj(){
+    eventObj.date = document.getElementById("date_input").value
+    eventObj.date = document.getElementById("event_input").value
+    eventObj.date = document.getElementById("location_input").value
+    eventObj.date = document.getElementById("atendee_input").value
+    eventObj.date = document.getElementById("reminder_input").value
+    eventObj.date = document.getElementById("alternative_input").value
+    updateSchedule(eventObj)
 }
 
-function clearDefault(){
-   return this.value = ""
+function updateSchedule(eventObj){
+    fetch("http://localhost:3000/upcomingEvents",{
+        method:'POST',
+        headers:{
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(eventObj)
+    })
+
 }

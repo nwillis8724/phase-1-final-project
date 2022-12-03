@@ -461,7 +461,8 @@ body {
         height: 175px;
     }
 
-    #upcoming_event_input #planner_submit_all{
+    #planner_submit_all{
+        height: 22px;
         width: 100px;
         position: absolute; left: 40%; top: 90%;
     }
