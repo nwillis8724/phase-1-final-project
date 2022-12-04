@@ -1,21 +1,21 @@
 # Dani-O-Meter
 
 ## Overview
-The Dani-O-Meter is a web app that started as a joke between my fiance and I when I joined a coding bootcamp. It still contains a lot of the satire you see in a long-term relationship but I do think it could help those indecisive people in our lives. It asks for a few different things, what kind of mood you are feeling today, your general location, and what activities you enjoy. In turn it will display the appropriate options to take the day on.
+The Dani-O-Meter is a web app that started as a joke between my fiance and I when I joined a coding bootcamp. I think it could help us indecisive people in our lives. It asks for a few different things, and in turn it will display the appropriate options to take the day on.
 
 # Functions
 The Dani-O-Meter will have an assortment of functions, the hope is that they all intermingle to make one final product. I imagine that most of these things will change substantially, if not entirely. 
 
-Everything after the three manual imputs will be influenced by whatever has been inputted. perhaps some sort of hide/unhide event after submitting all three will hide the "input" section and show the "Output" section
+Eventually, most things after the manual inputs will be influenced by whatever has been inputted. The mood and day productivity levels are first inputted, and then hidden to be replaced by the things it has influenced without refreshing the page. There is currently a recipe API, a local json for upcoming events, stock exchange information, and a playlist based on your mood.
 
 
 ## Inputs
 
 Weather API
-    We will be accessing a Weather API to dictate a lot of the options on the page, for example if its raining it will advise an umbrella for the outfit plan
+    We will be accessing a Weather API to hopefully dictate some options on the page in the future, for example if its raining it will advise an umbrella for the outfit plan
 
 Mood meter
-    Utilizing a drop down bar between 1-10 will help the system figure out what general paths to take. for now it will be fairly straight forward - but perhaps we can implement a push system that gives us less motivated individuals a bit extra motivation on those 1 days.
+    Utilizing an inputted number between 1-10 will help the system figure out what general paths to take. For now it will be fairly straight forward - but I plan to implement some more interactivity with this function.
 
 The days vibe
     Productivity level drop-down with string type inputs that range from lazy day to get it done day. As we all know, mood does not decide whether or not we have to go to work... unfortunately.
@@ -24,10 +24,10 @@ The days vibe
 
 ## Outputs
 
-Meal Plan
+Recpipies
     There is an API attatched to a display card that cycles through recipies so you can try something new every now and again. Supplies a link for indepth instruction/bookmarking
 
-Clothes(not yet implemented)
+Outfits(not yet implemented)
     What to wear. I'm thinking we use a JSON to store a few outfits and even add a submit form to add to the JSON, seperated top(head and torso), bottom(pants), and shoes(shoes)
 
 Social Expectations
