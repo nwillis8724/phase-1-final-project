@@ -61,10 +61,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
 //on click submit button hides the input after storing any value information from the mood meter
     document.getElementById("submit").addEventListener("click", initiateSelections)
 //do the same thing for enter keypress //detatch from window, keeps working on 2nd page//
-    window.addEventListener("keydown", enterKeyPress)
+    document.getElementById("mood_meter_card").addEventListener("keydown", enterKeyPress)
 //if the enter key is clicked initiate selections
     function enterKeyPress(e){
         if(e.key === "Enter"){
+            console.log("hi")
             initiateSelections()
         }
     }
@@ -136,8 +137,7 @@ fetch("https://api.edamam.com/api/recipes/v2?type=public&beta=false&app_id=11fd9
 //filter recipe to one random recipe object
     function filterRecipies(recipies){
         let recipeArr = recipies.hits
-        let randomRecipe = recipeArr[getRandomInt(1, 21)]
-        console.log(randomRecipe.recipe.ingredients)
+        let randomRecipe = recipeArr[getRandomInt(1, 20)]
         createRecipieCard(randomRecipe)
         }
 //take filtered recipe and turn it into a card
@@ -166,27 +166,32 @@ fetch("https://api.edamam.com/api/recipes/v2?type=public&beta=false&app_id=11fd9
         return stepArr.join(", ")  
     }
 
-// //daily stock advice
-//     fetch("https://house-stock-watcher-data.s3-us-west-2.amazonaws.com/data/all_transactions.json")
-//         .then(response => response.json())
-//         .then(data => displayStockTransactions(data))
+//daily stock advice
+    fetch("https://house-stock-watcher-data.s3-us-west-2.amazonaws.com/data/all_transactions.json")
+        .then(response => response.json())
+        .then(data => displayStockTransactions(data))
 
     function displayStockTransactions(transArr){
         //get transactions from the day of using todays date and a filter method
         let todaysTransactions = transArr.filter(transaction => transaction.disclosure_date === currentDate)
         let displayedTransaction = todaysTransactions[0]
         let typeOfTransaction
-        if(displayedTransaction.type === "sale_full"){
+        if(displayedTransaction === undefined){
+            document.getElementById("title").innerText = "No Trades in the House Today"
+        }else if(displayedTransaction.type === "sale_full"){
             typeOfTransaction = "Sell"
-        }else{
+            document.getElementById("rep_name").innerText = `Representative ${displayedTransaction.representative}`
+            document.getElementById("transaction_type").innerText = `Transaction Type: ${typeOfTransaction}`
+            document.getElementById("ticker").innerText = `Ticker: ${displayedTransaction.ticker}`
+            document.getElementById("amount").innerText = `Amount: ${displayedTransaction.amount}`
+        }else if(displayedTransaction.type === "purchase"){
             typeOfTransaction = "Buy"
-        }
-        console.log(displayedTransaction)
-        document.getElementById("rep_name").innerText = `Representative ${displayedTransaction.representative}`
-        document.getElementById("transaction_type").innerText = `Transaction Type: ${typeOfTransaction}`
-        document.getElementById("ticker").innerText = `Ticker: ${displayedTransaction.ticker}`
-        document.getElementById("amount").innerText = `Amount: ${displayedTransaction.amount}`
+            document.getElementById("rep_name").innerText = `Representative ${displayedTransaction.representative}`
+            document.getElementById("transaction_type").innerText = `Transaction Type: ${typeOfTransaction}`
+            document.getElementById("ticker").innerText = `Ticker: ${displayedTransaction.ticker}`
+            document.getElementById("amount").innerText = `Amount: ${displayedTransaction.amount}`
     }
+}
 
 
 //planner data fetch
@@ -201,7 +206,6 @@ fetch("https://api.edamam.com/api/recipes/v2?type=public&beta=false&app_id=11fd9
     function plannerEventFill(scheduleJson){
         scheduleJson.forEach(event => {
             if(event.id === scheduleJson.length){
-                console.log(event)
                 document.getElementById("event_title").innerText = event.event
                 document.getElementById("event_location").innerText = document.getElementById("event_location").innerText + " " + event.location
                 document.getElementById("event_atendees").innerText = document.getElementById("event_atendees").innerText + " " + event.attendees
