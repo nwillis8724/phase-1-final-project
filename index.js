@@ -37,13 +37,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
         li.addEventListener('click', agendaOptionSelected) 
     }
 
-//make agenda open with hover
+//make agenda open with mouseover event
     agendaDefault.addEventListener("mouseover", openDropdown)
 
     function openDropdown(){
         dropdown.open = true
     }
-//close agenda on click
+//close agenda on click event
     window.addEventListener('click', closeDropdown)
 
     function closeDropdown(){
