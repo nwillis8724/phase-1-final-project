@@ -122,23 +122,23 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 //Recipe API
 
-fetch("https://api.edamam.com/api/recipes/v2?type=public&beta=false&app_id=11fd9927&app_key=82ce8e31088f48974a06cda967e986ce&diet=balanced&imageSize=REGULAR&random=true", {
-    method: "GET",   
-    headers: {
-            "cache-control": "private",
-            "connection": "keep-alive",
-            "content-length": "193",
-            "content-type": "application/json",
-            "date": "Sat, 03 Dec 2022 18:29:28 GMT",
-            "expires": "Thu, 01 Jan 1970 00:00:00 GMT",
-            "server": "openresty",
-            "strict-transport-security": "max-age=15552001",
-            "x-envoy-upstream-service-time": "190",
-            "x-served-by": "ip-10-0-1-87.ec2.internal/10.0.1.87"
-    }
-})
-    .then(response => response.json())
-    .then(recipies => filterRecipies(recipies))
+    fetch("https://api.edamam.com/api/recipes/v2?type=public&beta=false&app_id=11fd9927&app_key=82ce8e31088f48974a06cda967e986ce&diet=balanced&imageSize=REGULAR&random=true", {
+        method: "GET",   
+        headers: {
+                "cache-control": "private",
+                "connection": "keep-alive",
+                "content-length": "193",
+                "content-type": "application/json",
+                "date": "Sat, 03 Dec 2022 18:29:28 GMT",
+                "expires": "Thu, 01 Jan 1970 00:00:00 GMT",
+                "server": "openresty",
+                "strict-transport-security": "max-age=15552001",
+                "x-envoy-upstream-service-time": "190",
+                "x-served-by": "ip-10-0-1-87.ec2.internal/10.0.1.87"
+        }
+    })
+        .then(response => response.json())
+        .then(recipies => filterRecipies(recipies))
 
 //filter recipe to one random recipe object
     function filterRecipies(recipies){
