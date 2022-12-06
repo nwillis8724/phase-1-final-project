@@ -4,9 +4,9 @@
 The Dani-O-Meter is a web app that started as a joke between my fiance and I when I joined a coding bootcamp. I think it could help us indecisive people in our lives. It asks for a few different things, and in turn it will display the appropriate options to take the day on.
 
 # Functions
-The Dani-O-Meter will have an assortment of functions, the hope is that they all intermingle to make one final product. I imagine that most of these things will change substantially, if not entirely. 
+The Dani-O-Meter will take in and store information based on your input, and use that information to influence several methods of organization which are displayed after input. Those inputs being a Mood Meter which asks you to gague your mood between one and ten, and the other an Agenda Selection, which asks how you would describe the overall prospect of your day. For the output section of the page it will display a recipie card, planner card, a playlist, as well as some stock information. All the while displaying what kind of weather can be expected for the week. 
 
-Eventually, most things after the manual inputs will be influenced by whatever has been inputted. The mood and day productivity levels are first inputted, and then hidden to be replaced by the things it has influenced without refreshing the page. There is currently a recipe API, a local json for upcoming events, stock exchange information, and a playlist based on your mood.
+Eventually, most of the outputs displayed will be influenced by whatever has been inputted.
 
 
 ## Inputs
@@ -17,7 +17,7 @@ Weather API
 Mood meter
     Utilizing an inputted number between 1-10 will help the system figure out what general paths to take. For now it will be fairly straight forward - but I plan to implement some more interactivity with this function.
 
-The days vibe
+Agenda Selection
     Productivity level drop-down with string type inputs that range from lazy day to get it done day. As we all know, mood does not decide whether or not we have to go to work... unfortunately.
 
 
@@ -36,8 +36,8 @@ Social Expectations
 Songs
    Depending on mood input, a playlist will show up on the page.
 
-Any upcoming events 
-    Manually input any sort of event you have upcoming and the page will remind you what ever the latest event is on the page.
+Trades within the House of Representatives
+    Stock trades made that day by the house of representatives. 
 
 # Credits
 
