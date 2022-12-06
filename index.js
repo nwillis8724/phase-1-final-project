@@ -37,18 +37,20 @@ window.addEventListener('DOMContentLoaded', (event) => {
         li.addEventListener('click', agendaOptionSelected) 
     }
 
-//make agenda open with mouseover event
-    agendaDefault.addEventListener("mouseover", openDropdown)
-
+//make agenda open with mouseenter event
+    agendaDefault.addEventListener("mouseenter", openDropdown)
+    
     function openDropdown(){
         dropdown.open = true
     }
-//close agenda on click event
-    window.addEventListener('click', closeDropdown)
+
+//make agenda close with mouseleave event
+    document.getElementById("agenda_ul").addEventListener("mouseleave", closeDropdown)
 
     function closeDropdown(){
         dropdown.open = false
     }
+
 
 //captures innerHML of agenda selections, replaces default and dropbar dismissed
     function agendaOptionSelected(){
