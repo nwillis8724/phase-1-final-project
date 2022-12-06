@@ -52,7 +52,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     }
 
 
-//captures innerHML of agenda selections, replaces default and dropbar dismissed
+//captures innerHML of agenda selections, replaces default and dismisses dropbar
     function agendaOptionSelected(){
         let agendaDialogue = this.innerHTML
         agendaDefault.innerHTML = agendaDialogue
@@ -62,8 +62,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 //on click submit button hides the input after storing any value information from the mood meter
     document.getElementById("submit").addEventListener("click", initiateSelections)
+
 //do the same thing for enter keypress //detatch from window, keeps working on 2nd page//
     document.getElementById("mood_meter_card").addEventListener("keydown", enterKeyPress)
+
 //if the enter key is clicked initiate selections
     function enterKeyPress(e){
         if(e.key === "Enter"){
@@ -76,26 +78,29 @@ window.addEventListener('DOMContentLoaded', (event) => {
         let agendaStorage = document.getElementById("agenda")
         //check if agenda selection has been made
         if(agendaDefault.innerHTML === "What's on the agenda for today?"){
-            //activate agenda error banner
+            //activate agenda error banner/timeout
             agendaErrorBanner.removeAttribute("hidden")
-            if(agendaErrorBanner.hidden === false){
-                setTimeout(() => {agendaErrorBanner.setAttribute("hidden", true)}, 5000);
-            }
+                if(agendaErrorBanner.hidden === false){
+                    setTimeout(() => {agendaErrorBanner.setAttribute("hidden", true)}, 5000);
+                }
     // check if the value is less than 1 or greater than 10
         }else if(parseInt(document.getElementById("mood_input").value) < 1 || parseInt(document.getElementById("mood_input").value) > 10){
             // reset input value 
             document.getElementById("mood_input").value = " "
-            //activate mood error banner
+            //activate mood error banner/timeout
             moodErrorBanner.removeAttribute("hidden")
-            if(moodErrorBanner.hidden === false){
-                setTimeout(() => {moodErrorBanner.setAttribute("hidden", true)}, 5000);
-            }
+                if(moodErrorBanner.hidden === false){
+                    setTimeout(() => {moodErrorBanner.setAttribute("hidden", true)}, 5000);
+                }
     //check if input is n/a
         }else if(document.getElementById("mood_input").value === ''){
+            // reset input value 
+            document.getElementById("mood_input").value = " "
+            //activate mood error banner/timeout
             moodErrorBanner.removeAttribute("hidden")
-            if(moodErrorBanner.hidden === false){
-                setTimeout(() => {moodErrorBanner.setAttribute("hidden", true)}, 5000);
-            }
+                if(moodErrorBanner.hidden === false){
+                    setTimeout(() => {moodErrorBanner.setAttribute("hidden", true)}, 5000);
+                }
         }else{
             //set mood_num storage and reveal next page
                 document.getElementById("mood_num").innerHTML = document.getElementById("mood_input").value
@@ -147,16 +152,16 @@ fetch("https://api.edamam.com/api/recipes/v2?type=public&beta=false&app_id=11fd9
         //pull name and place in card
             let recipieName = recipeObj.recipe.label
             document.getElementById("recipie_name").innerText = recipieName
-        //pull img
+        //pull img and place in card
             let recipieImg = recipeObj.recipe.images.REGULAR.url
             document.getElementById("recipie_image").src = recipieImg
-        //pull desc
+        //pull desc and place in card
             let recipieDesc = stringifyIngredients(recipeObj.recipe.ingredients)
             document.getElementById("recipie_description").innerText = recipieDesc
-        //pull link
+        //pull link and place in card
             let recipieLink = recipeObj.recipe.shareAs
             document.getElementById("recipie_link").href = recipieLink 
-        //pull credits
+        //pull credits and place in card
             let credits = recipeObj.recipe.source
             document.getElementById("credits").innerText = credits
         }
@@ -196,13 +201,11 @@ fetch("https://api.edamam.com/api/recipes/v2?type=public&beta=false&app_id=11fd9
 }
 
 
-//planner data fetch
-    function fetchData(){
+//schedule json fetch
     fetch("http://localhost:3000/upcomingEvents")
         .then(response => response.json())
         .then(data => plannerEventFill(data))
-    }
-    fetchData()
+
 
 // fill planner event card
     function plannerEventFill(scheduleJson){
@@ -223,33 +226,36 @@ fetch("https://api.edamam.com/api/recipes/v2?type=public&beta=false&app_id=11fd9
     for (input of eventInputs) {
         input.addEventListener('click', clearDefault) 
     }
+
     function clearDefault(){
-    return this.value = ""
+        return this.value = ""
     }
 
 //event listener for submit button
-submitButton.addEventListener("click", createEventObj)
+    submitButton.addEventListener("click", createEventObj)
 
-function createEventObj(){
-    //assign eventObj variables
-    let eventObj = {  
-        "date" : dateInput.value,
-        "event": eventInput.value,
-        "location": locationInput.value,
-        "attendees": atendeeInput.value,
-        "reminders": reminderInput.value,
-        "alternative": alternativeInput.value,
-        }
-    //put eventObj into json for later calling
-    updateSchedule(eventObj)
-    dateInput.value = "Date in M/D/YYYY"
-    eventInput.value = "What is the Event"
-    locationInput.value = "What is the Event"
-    atendeeInput.value = "Who else will be going?"
-    reminderInput.value = "Anything to remember?"
-    alternativeInput.value = "Alternative plan?"
-}
+//turn planner input into an obj
+    function createEventObj(){
+        //assign eventObj variables
+        let eventObj = {  
+            "date" : dateInput.value,
+            "event": eventInput.value,
+            "location": locationInput.value,
+            "attendees": atendeeInput.value,
+            "reminders": reminderInput.value,
+            "alternative": alternativeInput.value,
+            }
+        //put eventObj into json for later calling
+        updateSchedule(eventObj)
+        dateInput.value = "Date in M/D/YYYY"
+        eventInput.value = "What is the Event"
+        locationInput.value = "What is the Event"
+        atendeeInput.value = "Who else will be going?"
+        reminderInput.value = "Anything to remember?"
+        alternativeInput.value = "Alternative plan?"
+    }
 
+//place new planner input into json
 function updateSchedule(eventObj){
     fetch("http://localhost:3000/upcomingEvents",{
         method:'POST',
