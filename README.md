@@ -1,7 +1,7 @@
 # Dani-O-Meter
 
 ## Overview
-The Dani-O-Meter is a web app that started as a joke between my fiance and I when I joined a coding bootcamp. I think it could help us indecisive people in our lives. It asks for a few different things, and in turn it will display the appropriate options to take the day on.
+The Dani-O-Meter is a web app that started as a joke between my fiance and I when I joined a coding bootcamp. I think it could help us indecisive people. It asks for a few different things, and in turn it will display the appropriate options to take the day on.
 
 # Functions
 The Dani-O-Meter will take in and store information based on your input, and use that information to influence several methods of organization which are displayed after input. Those inputs being a Mood Meter which asks you to gague your mood between one and ten, and the other an Agenda Selection, which asks how you would describe the overall prospect of your day. For the output section of the page it will display a recipie card, planner card, a playlist, as well as some stock information. All the while displaying what kind of weather can be expected for the week. 

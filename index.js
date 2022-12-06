@@ -119,7 +119,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
     }
 
-//or input event listener for the input inside mood meter
 
 //Recipe API
 
