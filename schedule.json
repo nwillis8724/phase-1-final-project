@@ -1,0 +1,22 @@
+{
+  "upcomingEvents": [
+    {
+      "date": "11/30/2022",
+      "event": "whats the event",
+      "location": "where is it at",
+      "attendees": "who else will be attending",
+      "reminders": "what should i bring",
+      "alternative": "do we have an alternative option",
+      "id": 1
+    },
+    {
+      "date": "12/3/2022",
+      "event": "Road Trip",
+      "location": "Downers",
+      "attendees": "Ignas",
+      "reminders": "Snacks",
+      "alternative": "Gaming",
+      "id": 2
+    }
+  ]
+}

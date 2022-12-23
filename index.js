@@ -3,6 +3,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     console.log('DOM fully loaded');
 })
 
+// todo: fix variables and calls on them throughout.
 //different variables
     let date = new Date()
     let currentDate = (date.getMonth() + '/' + date.getDate() + '/' + date.getFullYear())
@@ -93,7 +94,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     setTimeout(() => {moodErrorBanner.setAttribute("hidden", true)}, 5000);
                 }
     //check if input is n/a
-        }else if(document.getElementById("mood_input").value === ''){
+        }else if(document.getElementById("mood_input").value === " "){
             // reset input value 
             document.getElementById("mood_input").value = " "
             //activate mood error banner/timeout
@@ -179,10 +180,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     function displayStockTransactions(transArr){
         //get transactions from the day of using todays date and a filter method
+        console.log(transArr[0])
         let todaysTransactions = transArr.filter(transaction => transaction.disclosure_date === currentDate)
         let displayedTransaction = todaysTransactions[0]
         let typeOfTransaction
         if(displayedTransaction === undefined){
+
             document.getElementById("title").innerText = "No Trades in the House Today"
         }else if(displayedTransaction.type === "sale_full"){
             typeOfTransaction = "Sell"
