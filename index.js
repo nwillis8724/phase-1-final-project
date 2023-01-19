@@ -1,3 +1,4 @@
+//date
 let date = new Date()
 let currentDate = (date.getMonth() + '/' + date.getDate() + '/' + date.getFullYear())
 
