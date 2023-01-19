@@ -17,6 +17,15 @@
       "reminders": "Snacks",
       "alternative": "Gaming",
       "id": 2
+    },
+    {
+      "date": "1",
+      "event": "2",
+      "location": "3",
+      "attendees": "6",
+      "reminders": "5",
+      "alternative": "4",
+      "id": 3
     }
   ]
 }
